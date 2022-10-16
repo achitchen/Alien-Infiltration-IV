@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, 5f); // destroys after 'x' amount of seconds regardless of collision
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
         GameObject effect = Instantiate(colEffect, transform.position, Quaternion.identity);
         Destroy(effect, 0.1f); // destroy the effect

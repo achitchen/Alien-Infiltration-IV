@@ -18,7 +18,7 @@ public class Shooting : MonoBehaviour
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePos.position, firePos.rotation); // create the bullet at 'firePos'
-        Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-        bulletRb.AddForce(firePos.up * bulletForce, ForceMode2D.Impulse); // add force to the bullet
+        Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+        bulletRb.AddForce(firePos.up * bulletForce, ForceMode.Impulse); // add force to the bullet
     }
 }

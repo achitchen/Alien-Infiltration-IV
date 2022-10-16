@@ -4,17 +4,17 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 10f; // player movespeed
-    [SerializeField] private Rigidbody2D myRb = null;
+    [SerializeField] private Rigidbody myRb = null;
 
-    private Vector2 movement;
-    private Vector2 mousePos;
+    private Vector3 movement;
+    private Vector3 mousePos;
     public Camera cam; // may replace with cinemachine
 
     // Update is called once per frame
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        movement.z = Input.GetAxisRaw("Vertical");
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
 
@@ -22,8 +22,8 @@ public class PlayerMovement : MonoBehaviour
     {
         myRb.MovePosition(myRb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
-        Vector2 lookDir = mousePos - myRb.position; // player targets cursor
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        myRb.rotation = angle;
+        Vector3 lookDir = mousePos - myRb.position; // player targets cursor
+        float angle = Mathf.Atan2(lookDir.z, lookDir.x) * Mathf.Rad2Deg - 90f;
+        myRb.rotation = Quaternion.Euler(90, myRb.transform.rotation.y, angle);
     }
 }
