@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Shooting : MonoBehaviour
+public class Shooting : MonoBehaviour // replaced with 'Guns' script
 {
     [SerializeField] private Transform firePos = null;
     [SerializeField] private GameObject bulletPrefab = null;
