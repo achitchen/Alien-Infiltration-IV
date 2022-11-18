@@ -10,14 +10,22 @@ public class DetectionScript : MonoBehaviour
     bool canDetect;
     bool playerSeen;
     public float lookAngle = 1.5f;
-    [SerializeField] int detectionTimer = 0;
-    [SerializeField] int alertedTime = 100;
+    [SerializeField] float detectionTimer = 0f;
+    [SerializeField] float alertedTime = 100f;
+    [SerializeField] GameObject detectionSprite;
+    private Color detectionSpriteColor;
 
 
     private void Start()
     {
         canDetect = false;
         playerSeen = false;
+        detectionSpriteColor = Color.yellow;
+    }
+
+    private void Update()
+    {
+
     }
 
     private void FixedUpdate()
@@ -32,7 +40,7 @@ public class DetectionScript : MonoBehaviour
             StopCoroutine(ResetAlarm());
             if (detectionTimer < alertedTime)
             {
-                detectionTimer += 1;
+                detectionTimer += 1f;
             }
             else
             {
@@ -48,6 +56,8 @@ public class DetectionScript : MonoBehaviour
             StartCoroutine(ResetAlarm());
         }
 
+        detectionSpriteColor = new Color(detectionSpriteColor.r, detectionSpriteColor.g, detectionSpriteColor.b, (detectionTimer / 100));
+        detectionSprite.GetComponent<SpriteRenderer>().color = detectionSpriteColor;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -64,6 +74,7 @@ public class DetectionScript : MonoBehaviour
         {
             canDetect = false;
             playerObject = null;
+            playerSeen = false;
         }
     }
 
@@ -95,7 +106,7 @@ public class DetectionScript : MonoBehaviour
     IEnumerator ResetAlarm()
     {
         yield return new WaitForSeconds(2f);
-        detectionTimer = 0;
+        detectionTimer = 0f;
         playerSeen = false;
     }
 }
