@@ -73,7 +73,11 @@ public class StealthMovement : MonoBehaviour
             isMoving = true;
             Invoke("CancelMovement", Random.Range(1.5f, 3.5f));
         }
+    }
 
+    private void Movement(Vector3 dir)
+    {
+        transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
         RaycastHit hit;
         Debug.DrawRay(transform.position, movementDir, Color.green, minMovementDistance);
         if (Physics.Raycast(transform.position, movementDir, out hit, minMovementDistance))
@@ -81,11 +85,6 @@ public class StealthMovement : MonoBehaviour
             CancelMovement();
             CancelInvoke();
         }
-    }
-
-    private void Movement(Vector3 dir)
-    {
-        transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
     }
 
     private void CancelMovement()
