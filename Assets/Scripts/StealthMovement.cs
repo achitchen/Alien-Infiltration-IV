@@ -37,7 +37,7 @@ public class StealthMovement : MonoBehaviour
             Invoke("ChooseMovementDir", 1f);
             isMoving = true;
         }
-        else
+        else if (movementDir != Vector3.zero)
         {
             Movement(movementDir);
         }
@@ -53,20 +53,25 @@ public class StealthMovement : MonoBehaviour
             {
                 case 0:
                     movementDir = Vector3.forward;
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
                     break;
                 case 1:
                     movementDir = Vector3.left;
+                    transform.rotation = Quaternion.Euler(0, -90, 0);
                     break;
                 case 2:
                     movementDir = Vector3.back;
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
                     break;
                 case 3:
                     movementDir = Vector3.right;
+                    transform.rotation = Quaternion.Euler(0, 90, 0);
                     break;
                 case 4: movementDir = Vector3.zero;
                     break;
             }
-            Invoke("CancelMovement", Random.Range(2f, 4f));
+            isMoving = true;
+            Invoke("CancelMovement", Random.Range(1.5f, 3.5f));
         }
 
         RaycastHit hit;
@@ -74,12 +79,13 @@ public class StealthMovement : MonoBehaviour
         if (Physics.Raycast(transform.position, movementDir, out hit, minMovementDistance))
         {
             CancelMovement();
+            CancelInvoke();
         }
     }
 
     private void Movement(Vector3 dir)
     {
-        transform.Translate(dir * movementSpeed * Time.deltaTime);
+        transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
     }
 
     private void CancelMovement()
