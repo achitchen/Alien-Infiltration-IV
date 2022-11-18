@@ -91,5 +91,6 @@ public class StealthMovement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         CancelMovement();
+        CancelInvoke();
     }
 }
