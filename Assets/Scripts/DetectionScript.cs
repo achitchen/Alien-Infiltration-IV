@@ -10,7 +10,7 @@ public class DetectionScript : MonoBehaviour
     bool canDetect;
     bool playerSeen;
     public float lookAngle = 1.5f;
-    [SerializeField] float detectionTimer = 0f;
+    public float detectionTimer = 0f;
     [SerializeField] float alertedTime = 100f;
     [SerializeField] GameObject detectionSprite;
     private Color detectionSpriteColor;
