@@ -24,6 +24,7 @@ public class StealthMovement : MonoBehaviour
             if (isMoving)
             {
                 CancelMovement();
+                CancelInvoke();
             }
         }
         else
