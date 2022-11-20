@@ -6,6 +6,8 @@ public class StealthMovement : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 1f;
     [SerializeField] float minMovementDistance = 1f;
+    [SerializeField] float minMovementTime = 1f;
+    [SerializeField] float maxMovementTime = 1f;
     Vector3 movementDir;
     bool isDetecting;
     [SerializeField] bool isMoving;
@@ -82,8 +84,11 @@ public class StealthMovement : MonoBehaviour
         Debug.DrawRay(transform.position, movementDir, Color.green, minMovementDistance);
         if (Physics.Raycast(transform.position, movementDir, out hit, minMovementDistance))
         {
-            CancelMovement();
-            CancelInvoke();
+            if (hit.transform.gameObject.tag != "Ground")
+            {
+                CancelMovement();
+                CancelInvoke();
+            }
         }
     }
 
@@ -95,7 +100,10 @@ public class StealthMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        CancelMovement();
-        CancelInvoke();
+        if (collision.gameObject.tag != "Ground")
+        {
+            CancelMovement();
+            CancelInvoke();
+        }
     }
 }
