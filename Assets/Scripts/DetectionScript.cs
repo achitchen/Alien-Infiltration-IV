@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DetectionScript : MonoBehaviour
 {
-    Vector3 lookDirForward;
     Vector3 lookDir;
     GameObject playerObject;
+    GameManager gameManager;
     bool canDetect;
     bool playerSeen;
     public float lookAngle = 1.5f;
@@ -21,6 +21,7 @@ public class DetectionScript : MonoBehaviour
         canDetect = false;
         playerSeen = false;
         detectionSpriteColor = Color.yellow;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void Update()
@@ -46,6 +47,7 @@ public class DetectionScript : MonoBehaviour
             {
                 {
                     Debug.Log("Kill player");
+                    AttackPlayer();
                 }
                 
             }
@@ -81,7 +83,6 @@ public class DetectionScript : MonoBehaviour
     private void CheckForPlayer(GameObject other)
     {
         RaycastHit hit;
-        lookDirForward = transform.TransformDirection(Vector3.forward);
         lookDir = other.transform.position - this.transform.position;
         Debug.DrawRay(transform.position, lookDir, Color.cyan, 10);
         if (Physics.Raycast(transform.position, lookDir, out hit, 10))
@@ -108,6 +109,13 @@ public class DetectionScript : MonoBehaviour
         yield return new WaitForSeconds(2f);
         detectionTimer = 0f;
         playerSeen = false;
+    }
+
+    private void AttackPlayer()
+    {
+        transform.position = playerObject.transform.position;
+        gameManager.isGameOver = true;
+        gameManager.GameOver();
     }
 }
 

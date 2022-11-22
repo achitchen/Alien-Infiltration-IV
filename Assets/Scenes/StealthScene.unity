@@ -2564,21 +2564,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -9124207072034750073, guid: 35e9925c44ba9414cb34ce021eaeb634, type: 3}
-      propertyPath: movementSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -9124207072034750073, guid: 35e9925c44ba9414cb34ce021eaeb634, type: 3}
-      propertyPath: maxMovementTime
-      value: 4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -9124207072034750073, guid: 35e9925c44ba9414cb34ce021eaeb634, type: 3}
-      propertyPath: minMovementTime
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -9124207072034750073, guid: 35e9925c44ba9414cb34ce021eaeb634, type: 3}
-      propertyPath: minMovementDistance
-      value: 1.5
+    - target: {fileID: 374460549, guid: 35e9925c44ba9414cb34ce021eaeb634, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 2499142987614998212, guid: 35e9925c44ba9414cb34ce021eaeb634, type: 3}
       propertyPath: m_RootOrder
@@ -2991,3 +2979,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stealthState: 0
   transitionState: 0
+  isGameOver: 0
