@@ -4,6 +4,9 @@ using UnityEngine.UI;
 // https://www.youtube.com/watch?v=wZ2UUOC17AY&t=462s&ab_channel=Dave%2FGameDevelopment
 public class Guns : MonoBehaviour
 {
+    // player
+    public PlayerMovement playerMovement = null;
+
     //bullet 
     [SerializeField] private GameObject bullet = null;
 
@@ -41,9 +44,15 @@ public class Guns : MonoBehaviour
         readyToShoot = true;
     }
 
+    private void Start()
+    {
+        playerMovement = GetComponent<PlayerMovement>();
+    }
+
     private void Update()
     {
-        FireInput(); // Fire only if cursor is over 'groundMask'?
+        if (!playerMovement.isPaused)
+            FireInput(); // Fire only if cursor is over 'groundMask'?
 
         //Set ammo display, if it exists :D
         if (ammunitionDisplay != null)
