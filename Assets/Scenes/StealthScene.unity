@@ -5390,13 +5390,13 @@ Transform:
   - {fileID: 351209910}
   - {fileID: 1724496254}
   - {fileID: 1984118825}
-  - {fileID: 1339531386}
   - {fileID: 429961441}
+  - {fileID: 1339531386}
   - {fileID: 535952737}
   - {fileID: 1748039572}
-  - {fileID: 1839685852}
   - {fileID: 1391481040}
   - {fileID: 859341269}
+  - {fileID: 1839685852}
   - {fileID: 743782629}
   - {fileID: 2138571273}
   - {fileID: 241036931}
@@ -9627,8 +9627,8 @@ Transform:
   m_Children:
   - {fileID: 928458161}
   - {fileID: 1727941874}
-  - {fileID: 992003330}
   - {fileID: 2048388951}
+  - {fileID: 992003330}
   m_Father: {fileID: 1840557076}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14430,3 +14430,4 @@ MonoBehaviour:
   stealthState: 0
   transitionState: 0
   isGameOver: 0
+  stealthMusic: {fileID: 8300000, guid: 16e980f4afae84541a32cfcfc0fd55aa, type: 3}
