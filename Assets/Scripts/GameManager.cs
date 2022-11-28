@@ -9,6 +9,29 @@ public class GameManager : MonoBehaviour
     public bool transitionState;
     public bool isGameOver;
     [SerializeField] AudioClip stealthMusic;
+
+    // Checkpoints
+    [Header("Checkpoints")]
+    public GameObject currentCheckpoint;
+    public GameObject player = null;
+
+    #region Singleton & Awake
+    public static GameManager gMan = null; // should always initilize
+
+    private void Awake()
+    {
+        if (gMan == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            gMan = this;
+        }
+        else if (gMan != null)
+        {
+            Destroy(gameObject); // if its already there destroy it
+        }
+    }
+    #endregion
+
     void Start()
     {
         AudioSource musicSource = gameObject.AddComponent<AudioSource>();
@@ -18,6 +41,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         isGameOver = false;
         stealthState = true;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
@@ -34,5 +58,11 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         //Activate GameOver Screen
+    }
+
+    public void RespawnAtLastCheckpoint()
+    {
+        if (currentCheckpoint != null)
+            player.gameObject.transform.position = currentCheckpoint.transform.position;
     }
 }
