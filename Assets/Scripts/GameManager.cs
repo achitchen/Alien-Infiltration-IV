@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject); // if its already there destroy it
         }
+        Application.targetFrameRate = 144; // framerate
     }
     #endregion
 
@@ -58,6 +59,17 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         //Activate GameOver Screen
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+        Debug.Log("I quit!");
+    }
+
+    public void LoadLevel(string levelName)
+    {
+        SceneManager.LoadScene(levelName);
     }
 
     public void RespawnAtLastCheckpoint()

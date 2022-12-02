@@ -3727,8 +3727,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 127847955}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+      - m_Target: {fileID: 1809137951}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
@@ -3752,7 +3752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.16862746, g: 0.65882355, b: 0.7921569, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.68235296, a: 0.47058824}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4249,29 +4249,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -0.073, y: 18.38, z: 0.713}
---- !u!1 &1809137950 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7713205588433048262, guid: 1019b4d2d4bba3b47bb69042529680dc, type: 3}
+--- !u!114 &1809137951 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1809137951, guid: 1019b4d2d4bba3b47bb69042529680dc, type: 3}
   m_PrefabInstance: {fileID: 246599289}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1809137951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1809137950}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4b63c52e66bc5f48a5910baa7352995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stealthState: 0
-  transitionState: 0
-  isGameOver: 0
-  stealthMusic: {fileID: 8300000, guid: 7cb72f9195945f4468c7df0a4bbad5ec, type: 3}
-  currentCheckpoint: {fileID: 0}
-  player: {fileID: 0}
 --- !u!1 &1810476586
 GameObject:
   m_ObjectHideFlags: 0
@@ -4382,7 +4370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.16862746, g: 0.65882355, b: 0.7921569, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.68235296, a: 0.47058824}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

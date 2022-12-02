@@ -18,11 +18,6 @@ public class PlayerMovement : MonoBehaviour
 
     public Camera cam; // may replace with cinemachine
 
-    private void Awake()
-    {
-        Application.targetFrameRate = 144; // framerate
-    }
-
     private void Start()
     {
         cam = Camera.main;
@@ -33,10 +28,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.z = Input.GetAxisRaw("Vertical");
-        Aim();
-
+        if (!isPaused)
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.z = Input.GetAxisRaw("Vertical");
+            Aim();
+        }
+        
         // Pause Input
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -57,7 +55,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity))
         {
-            
             return (hit: true, pos: hitInfo.point);
         }
         else
@@ -93,11 +90,5 @@ public class PlayerMovement : MonoBehaviour
             pauseUI.enabled = false;
             Time.timeScale = 1;
         }
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
-        Debug.Log("I quit!");
     }
 }
