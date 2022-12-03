@@ -42,7 +42,13 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         isGameOver = false;
         stealthState = true;
-        player = GameObject.FindGameObjectWithTag("Player");
+        InitialiseGame();
+    }
+
+    public void InitialiseGame()
+    {
+        player = GameObject.FindWithTag("Player");
+        Debug.Log("Loading assets");
     }
 
     private void Update()
@@ -70,6 +76,13 @@ public class GameManager : MonoBehaviour
     public void LoadLevel(string levelName)
     {
         SceneManager.LoadScene(levelName);
+        StartCoroutine(LoadTime());
+    }
+
+    private IEnumerator LoadTime()
+    {
+        yield return new WaitForSeconds(1f);
+        InitialiseGame();
     }
 
     public void RespawnAtLastCheckpoint()
