@@ -1,4 +1,5 @@
 using UnityEngine;
+using EZCameraShake;
 
 public class PropHealth : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PropHealth : MonoBehaviour
                 GetComponent<Collider>().enabled = false;
                 Instantiate(effect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), 
                     Quaternion.Euler(-90, transform.localEulerAngles.y, transform.localEulerAngles.z));
+                CameraShaker.Instance.ShakeOnce(4f, 3f, 0.5f, 0.5f);
                 Destroy(gameObject, 2);
             }
         }

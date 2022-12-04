@@ -4,18 +4,21 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 // https://www.youtube.com/watch?v=AOVCKEJE6A8&ab_channel=BarthaSzabolcs-GameDevJourney
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
+    [Header("Traits")]
     [SerializeField] private float moveSpeed = 10f; // player movespeed
-    [SerializeField] private Rigidbody myRb = null;
-    [SerializeField] private LayerMask groundMask; // needed?
-
+    public int currHealth = 0, maxHealth = 100; // player movespeed
+    public PlayerHealth healthBar;
+    private Rigidbody myRb = null;
     private Vector3 movement;
 
+    [Header("UI")]
     [SerializeField] private Canvas myUI = null;
     [SerializeField] private Canvas pauseUI = null;
     public bool isPaused = false;
 
+    [Header("Camera Properties")]
     public Camera cam; // may replace with cinemachine
 
     private void Start()
@@ -23,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
         cam = Camera.main;
         myUI = transform.GetChild(1).GetComponent<Canvas>();
         pauseUI = myUI.transform.GetChild(1).GetComponent<Canvas>();
+        myRb = GetComponent<Rigidbody>();
+
+        currHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -39,6 +46,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Pause();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space)) // for testing
+        {
+            TakeDamage(20);
         }
         
     }
@@ -88,6 +100,19 @@ public class PlayerMovement : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(null);
             pauseUI.enabled = false;
             Time.timeScale = 1;
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currHealth -= damage;
+        healthBar.SetHealth(currHealth);
+
+        if (currHealth <= 0)
+        {
+            // player dies
+            // game is over
+            Debug.Log("GAME OVER");
         }
     }
 }

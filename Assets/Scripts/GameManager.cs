@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [Header("Checkpoints")]
     public GameObject currentCheckpoint;
     public GameObject player = null;
+    public PlayerController playerController = null;
 
     #region Singleton & Awake
     public static GameManager gMan = null; // should always initilize
