@@ -16,8 +16,8 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) // if you toggle off 'Freeze Position Y' then you can shoot within the bounds of the Y-Axis
     {
-        GameObject effect = Instantiate(colEffect, transform.position, Quaternion.identity);
-        Destroy(effect);
+        GameObject effect = Instantiate(colEffect, transform.position, Quaternion.Euler(90, transform.localEulerAngles.y, transform.localEulerAngles.z));
+        Destroy(effect, 0.2f);
         Destroy(gameObject); // destroy the bullet
     }
 }

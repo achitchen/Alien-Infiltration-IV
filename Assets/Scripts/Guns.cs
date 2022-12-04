@@ -94,8 +94,6 @@ public class Guns : MonoBehaviour
 
     private void Shoot()
     {
-        readyToShoot = false;
-
         //Find the exact hit position using a raycast
         Ray ray = cam.ScreenPointToRay(Input.mousePosition); //Just a ray through the middle of your current view
         RaycastHit hit;
@@ -110,39 +108,46 @@ public class Guns : MonoBehaviour
         //Calculate direction from attackPoint to targetPoint
         Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
 
-        //Calculate spread
-        float x = Random.Range(-spread, spread);
-        float z = Random.Range(-spread, spread);
-
-        //Calculate new direction with spread
-        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, 0, z); //Just add spread to last direction
-
-        //Instantiate bullet/projectile
-        GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity); //store instantiated bullet in currentBullet
-        //Rotate bullet to shoot direction
-        currentBullet.transform.forward = directionWithSpread.normalized;
-
-        //Add forces to bullet
-        currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
-        currentBullet.GetComponent<Rigidbody>().AddForce(cam.transform.up * upwardForce, ForceMode.Impulse);
-
-        bulletsLeft--;
-        bulletsShot++;
-
-        //Invoke resetShot function (if not already invoked), with your timeBetweenShooting
-        if (allowInvoke)
+        var distance = Vector3.Distance(transform.position, hit.point); // safe zone
+        if (distance > 2)
         {
-            Invoke("ResetShot", timeBetweenShooting);
-            allowInvoke = false;
+            readyToShoot = false;
 
-            //Add recoil to player (should only be called once)
-            playerRb.AddForce(-directionWithSpread.normalized * recoilForce, ForceMode.Impulse);
+            //Calculate spread
+            float x = Random.Range(-spread, spread);
+            float z = Random.Range(-spread, spread);
+
+            //Calculate new direction with spread
+            Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, 0, z); //Just add spread to last direction
+
+            //Instantiate bullet/projectile
+            GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity); //store instantiated bullet in currentBullet
+                                                                                                       //Rotate bullet to shoot direction
+            currentBullet.transform.forward = directionWithSpread.normalized;
+
+            //Add forces to bullet
+            currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
+            currentBullet.GetComponent<Rigidbody>().AddForce(cam.transform.up * upwardForce, ForceMode.Impulse);
+            //Debug.Log(directionWithSpread.normalized * shootForce);
+            bulletsLeft--;
+            bulletsShot++;
+
+            //Invoke resetShot function (if not already invoked), with your timeBetweenShooting
+            if (allowInvoke)
+            {
+                Invoke("ResetShot", timeBetweenShooting);
+                allowInvoke = false;
+
+                //Add recoil to player (should only be called once)
+                playerRb.AddForce(-directionWithSpread.normalized * recoilForce, ForceMode.Impulse);
+            }
+
+            //if more than one bulletsPerTap make sure to repeat shoot function
+            if (bulletsShot < bulletsPerTap && bulletsLeft > 0)
+                Invoke("Shoot", timeBetweenShots);
         }
-
-        //if more than one bulletsPerTap make sure to repeat shoot function
-        if (bulletsShot < bulletsPerTap && bulletsLeft > 0)
-            Invoke("Shoot", timeBetweenShots);
     }
+
     private void ResetShot()
     {
         //Allow shooting and invoking again

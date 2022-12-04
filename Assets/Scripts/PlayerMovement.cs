@@ -72,7 +72,6 @@ public class PlayerMovement : MonoBehaviour
             direction.y = 0;
             transform.up = direction;
             transform.localEulerAngles = new Vector3(90, transform.localEulerAngles.y, transform.localEulerAngles.z);
-            Debug.DrawRay(transform.position, pos, Color.green);
         }
     }
 
