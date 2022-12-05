@@ -8,6 +8,7 @@ public class StealthMovement : MonoBehaviour
     [SerializeField] float minMovementDistance = 1f;
     [SerializeField] float minMovementTime = 1f;
     [SerializeField] float maxMovementTime = 1f;
+    private SpriteRenderer spriteRenderer;
     Vector3 movementDir;
     bool isDetecting;
     [SerializeField] bool isMoving;
@@ -15,6 +16,7 @@ public class StealthMovement : MonoBehaviour
     {
         movementDir = Vector3.zero;
         isDetecting = false;
+        spriteRenderer = gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>();
     }
 
     void FixedUpdate()
@@ -56,18 +58,24 @@ public class StealthMovement : MonoBehaviour
                 case 0:
                     movementDir = Vector3.forward;
                     transform.rotation = Quaternion.Euler(0, 0, 0);
+                    spriteRenderer.gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);
                     break;
                 case 1:
                     movementDir = Vector3.left;
                     transform.rotation = Quaternion.Euler(0, -90, 0);
+                    spriteRenderer.gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);
+                    spriteRenderer.flipX = true;
                     break;
                 case 2:
                     movementDir = Vector3.back;
                     transform.rotation = Quaternion.Euler(0, 180, 0);
+                    spriteRenderer.gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);
                     break;
                 case 3:
                     movementDir = Vector3.right;
                     transform.rotation = Quaternion.Euler(0, 90, 0);
+                    spriteRenderer.gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);
+                    spriteRenderer.flipX = false;
                     break;
                 case 4: movementDir = Vector3.zero;
                     break;
