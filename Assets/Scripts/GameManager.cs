@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
     public void InitialiseGame()
     {
         player = GameObject.FindWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
         Debug.Log("Loading assets");
     }
 
