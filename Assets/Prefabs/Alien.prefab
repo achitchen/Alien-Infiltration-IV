@@ -501,7 +501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
-  minMovementDistance: 1.5
+  minMovementDistance: 2.5
   minMovementTime: 2.5
   maxMovementTime: 4.5
   isMoving: 0
