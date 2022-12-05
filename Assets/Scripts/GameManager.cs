@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public GameObject player = null;
     public PlayerController playerController = null;
 
+    AudioSource musicSource;
+
     #region Singleton & Awake
     public static GameManager gMan = null; // should always initilize
 
@@ -36,9 +38,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        AudioSource musicSource = gameObject.AddComponent<AudioSource>();
-        musicSource.volume = 0.7f;
-        musicSource.clip = stealthMusic;
+        if (musicSource == null)
+        {
+            musicSource = gameObject.AddComponent<AudioSource>();
+            musicSource.volume = 0.7f;
+            musicSource.clip = stealthMusic;
+        }
         musicSource.Play();
         Time.timeScale = 1;
         isGameOver = false;
@@ -60,6 +65,11 @@ public class GameManager : MonoBehaviour
             if (Input.GetKey(KeyCode.F))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                if (musicSource.isPlaying)
+                {
+                    musicSource.Stop();
+                }
+                Start();
             }
         }
     }
