@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [Header("Enemy Traits")]
-    [SerializeField] private float moveSpeed = 2f; // player movespeed
+    [SerializeField] private float moveSpeed = 1f; // player movespeed
     public int currHealth = 0, maxHealth = 100;
     public Rigidbody rb;
     public float timer = 0, shootTimeLimit = 5;
@@ -40,6 +40,18 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
         }
 
+        // flip sprite
+        if (transform.localRotation.z < target.position.x)
+        {
+            transform.GetChild(0).GetComponent<SpriteRenderer>().flipY = false;
+            attackPoint.localPosition = new Vector3(attackPoint.localPosition.x, -0.5f, attackPoint.localPosition.z);
+        }
+        else
+        {
+            transform.GetChild(0).GetComponent<SpriteRenderer>().flipY = true;
+            attackPoint.localPosition = new Vector3(attackPoint.localPosition.x, 0.5f, attackPoint.localPosition.z);
+        }
+
         if (shooting) // hit-scan
         {
             RaycastHit hit;
@@ -59,7 +71,7 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        if (Vector3.Distance(transform.position, target.position) > 1f) // distance from player
+        if (Vector3.Distance(transform.position, target.position) < 10f) // distance from player
         {
             if (!preparingToShoot)
             {
@@ -88,7 +100,7 @@ public class EnemyController : MonoBehaviour
         var direction = target.position - transform.position;
         direction.y = 0;
         transform.up = direction;
-        transform.localEulerAngles = new Vector3(-90, transform.localEulerAngles.y, transform.localEulerAngles.z);
+        transform.localEulerAngles = new Vector3(90, transform.localEulerAngles.y, transform.localEulerAngles.z);
     }
 
     private IEnumerator Shoot()
