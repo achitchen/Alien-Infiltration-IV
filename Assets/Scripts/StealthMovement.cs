@@ -8,6 +8,8 @@ public class StealthMovement : MonoBehaviour
     [SerializeField] float minMovementDistance = 1f;
     [SerializeField] float minMovementTime = 1f;
     [SerializeField] float maxMovementTime = 1f;
+    [SerializeField] AudioClip moveSound;
+    private AudioSource moveSource;
     private SpriteRenderer spriteRenderer;
     Vector3 movementDir;
     bool isDetecting;
@@ -17,6 +19,9 @@ public class StealthMovement : MonoBehaviour
         movementDir = Vector3.zero;
         isDetecting = false;
         spriteRenderer = gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>();
+        moveSource = gameObject.AddComponent<AudioSource>();
+        moveSource.volume = 0.1f;
+        Physics.IgnoreCollision(GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>(), GetComponent<Collider>());
     }
 
     void FixedUpdate()
@@ -81,6 +86,7 @@ public class StealthMovement : MonoBehaviour
                     break;
             }
             isMoving = true;
+            moveSource.PlayOneShot(moveSound, 0.35f);
             Invoke("CancelMovement", Random.Range(1.5f, 3.5f));
         }
     }

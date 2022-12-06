@@ -488,6 +488,8 @@ MonoBehaviour:
   detectionTimer: 0
   alertedTime: 100
   detectionSprite: {fileID: 1477715806}
+  sound1: {fileID: 8300000, guid: 84e8282700ae55d49bf69c212eb5d07f, type: 3}
+  sound2: {fileID: 8300000, guid: bbd751792395ae749bd59f35fe843ede, type: 3}
 --- !u!114 &-9124207072034750073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +506,7 @@ MonoBehaviour:
   minMovementDistance: 2.5
   minMovementTime: 2.5
   maxMovementTime: 4.5
+  moveSound: {fileID: 8300000, guid: da4fec9c2a8842f4b8ed70d590dfa10a, type: 3}
   isMoving: 0
 --- !u!114 &62679596
 MonoBehaviour:

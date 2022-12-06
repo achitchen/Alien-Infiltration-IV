@@ -13,7 +13,10 @@ public class DetectionScript : MonoBehaviour
     public float detectionTimer = 0f;
     [SerializeField] float alertedTime = 100f;
     [SerializeField] GameObject detectionSprite;
+    [SerializeField] AudioClip sound1;
+    [SerializeField] AudioClip sound2;
     private Color detectionSpriteColor;
+    private AudioSource alienSounds;
 
 
     private void Start()
@@ -22,6 +25,11 @@ public class DetectionScript : MonoBehaviour
         playerSeen = false;
         detectionSpriteColor = Color.yellow;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (alienSounds == null)
+        {
+            alienSounds = gameObject.AddComponent<AudioSource>();
+            alienSounds.volume = 0.8f;
+        }
     }
 
     private void Update()
@@ -113,6 +121,15 @@ public class DetectionScript : MonoBehaviour
 
     private void AttackPlayer()
     {
+        int index = Random.Range(0, 1);
+        if (index == 0)
+        {
+            alienSounds.PlayOneShot(sound1);
+        }
+        if (index == 1)
+        {
+            alienSounds.PlayOneShot(sound2);
+        }
         transform.position = playerObject.transform.position;
         gameManager.isGameOver = true;
         gameManager.GameOver();
