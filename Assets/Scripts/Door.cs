@@ -19,6 +19,12 @@ public class Door : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            if (exitPos == null || camPos == null || camHolder == null)
+            {
+                exitPos = gameObject.transform.GetChild(0).gameObject;
+                camPos = gameObject.transform.GetChild(1).gameObject;
+                camHolder = GameObject.Find("CameraHolder");
+            }
             StartCoroutine(RoomTransition(other));
         }
     }
