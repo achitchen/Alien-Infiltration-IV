@@ -29,7 +29,7 @@ public class Door : MonoBehaviour
         transitionAnim.SetTrigger("Transition");
         yield return new WaitForSeconds(0.5f);
         player.transform.position = new Vector3(exitPos.transform.position.x, GameManager.gMan.player.transform.position.y, exitPos.transform.position.z);
-        camHolder.transform.position = new Vector3(camPos.transform.position.x, camHolder.transform.position.y, camHolder.transform.position.z);
+        camHolder.transform.position = new Vector3(camPos.transform.position.x, camPos.transform.position.y, camPos.transform.position.z);
         transitionAnim.SetTrigger("Transition");
     }
 }
