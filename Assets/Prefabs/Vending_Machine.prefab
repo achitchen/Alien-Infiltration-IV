@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4428304315430139451}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Vending_Machine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 3240021210784258749}
   - component: {fileID: 1990380428}
   - component: {fileID: 1990380427}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

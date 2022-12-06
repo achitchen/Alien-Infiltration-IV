@@ -5,14 +5,14 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private GameObject exitPos = null;
     [SerializeField] private GameObject camPos = null;
-    [SerializeField] private Camera cam = null;
+    [SerializeField] private GameObject camHolder = null;
 
     // Start is called before the first frame update
     void Start()
     {
         exitPos = gameObject.transform.GetChild(0).gameObject;
         camPos = gameObject.transform.GetChild(1).gameObject;
-        cam = Camera.main;
+        camHolder = GameObject.Find("CameraHolder");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,7 +29,7 @@ public class Door : MonoBehaviour
         transitionAnim.SetTrigger("Transition");
         yield return new WaitForSeconds(0.5f);
         player.transform.position = new Vector3(exitPos.transform.position.x, GameManager.gMan.player.transform.position.y, exitPos.transform.position.z);
-        cam.transform.position = new Vector3(camPos.transform.position.x, cam.transform.position.y, cam.transform.position.z);
+        camHolder.transform.position = new Vector3(camPos.transform.position.x, camHolder.transform.position.y, camHolder.transform.position.z);
         transitionAnim.SetTrigger("Transition");
     }
 }

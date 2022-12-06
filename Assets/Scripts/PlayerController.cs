@@ -1,14 +1,12 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 // https://www.youtube.com/watch?v=AOVCKEJE6A8&ab_channel=BarthaSzabolcs-GameDevJourney
 public class PlayerController : MonoBehaviour
 {
-    [Header("Traits")]
+    [Header("Player Traits")]
     [SerializeField] private float moveSpeed = 10f; // player movespeed
-    public int currHealth = 0, maxHealth = 100; // player movespeed
+    public int currHealth = 0, maxHealth = 500; 
     public PlayerHealth healthBar;
     private Rigidbody myRb = null;
     private Vector3 movement;
@@ -28,13 +26,22 @@ public class PlayerController : MonoBehaviour
         pauseUI = myUI.transform.GetChild(1).GetComponent<Canvas>();
         myRb = GetComponent<Rigidbody>();
 
+        // Health + UI
         currHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        myUI = transform.GetChild(1).GetComponent<Canvas>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (currHealth <= 0)
+        {
+            // player dies
+            // game is over
+            Debug.Log("GAME OVER");
+        }
+
         if (!isPaused)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
@@ -47,17 +54,10 @@ public class PlayerController : MonoBehaviour
         {
             Pause();
         }
-
-        if (Input.GetKeyDown(KeyCode.Space)) // for testing
-        {
-            TakeDamage(20);
-        }
-        
     }
 
     private void FixedUpdate()
     {
-        //myRb.MovePosition(myRb.position + movement * moveSpeed * Time.fixedDeltaTime);
         myRb.velocity = new Vector3(movement.x, 0, movement.z).normalized * moveSpeed * Time.deltaTime; // new movement so that the player does not phase through walls
     }
 
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
             var direction = pos - transform.position;
             direction.y = 0;
             transform.up = direction;
-            transform.localEulerAngles = new Vector3(90, transform.localEulerAngles.y, transform.localEulerAngles.z);
+            transform.localEulerAngles = new Vector3(-90, transform.localEulerAngles.y, transform.localEulerAngles.z);
         }
     }
 
@@ -107,12 +107,5 @@ public class PlayerController : MonoBehaviour
     {
         currHealth -= damage;
         healthBar.SetHealth(currHealth);
-
-        if (currHealth <= 0)
-        {
-            // player dies
-            // game is over
-            Debug.Log("GAME OVER");
-        }
     }
 }

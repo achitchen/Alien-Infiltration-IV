@@ -2074,7 +2074,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 600
   currHealth: 0
-  maxHealth: 100
+  maxHealth: 500
   healthBar: {fileID: 2634115878555918302}
   myUI: {fileID: 0}
   pauseUI: {fileID: 0}
