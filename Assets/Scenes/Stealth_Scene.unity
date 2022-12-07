@@ -37580,6 +37580,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1809137951, guid: 1019b4d2d4bba3b47bb69042529680dc, type: 3}
+      propertyPath: musicClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 16e980f4afae84541a32cfcfc0fd55aa, type: 3}
+    - target: {fileID: 1809137951, guid: 1019b4d2d4bba3b47bb69042529680dc, type: 3}
       propertyPath: stealthMusic
       value: 
       objectReference: {fileID: 8300000, guid: 16e980f4afae84541a32cfcfc0fd55aa, type: 3}
