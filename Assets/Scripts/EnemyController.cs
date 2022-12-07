@@ -12,8 +12,6 @@ public class EnemyController : MonoBehaviour
     public LineRenderer laserBeam = null;
     public Transform attackPoint = null;
     [SerializeField] AudioClip laserSound;
-    [SerializeField] AudioClip enemyRoar;
-    [SerializeField] AudioClip enemyRoar2;
     private AudioSource enemySounds;
 
     [Header("UI")]
@@ -33,8 +31,8 @@ public class EnemyController : MonoBehaviour
         enemySounds = gameObject.AddComponent<AudioSource>();
         enemySounds.volume = 0.65f;
 
-       // Health + UI
-       currHealth = maxHealth;
+        // Health + UI
+        currHealth = maxHealth;
        healthBar.SetMaxHealth(maxHealth);
     }
 
@@ -44,7 +42,7 @@ public class EnemyController : MonoBehaviour
 
         if (currHealth <= 0) // check health
         {
-            enemySounds.PlayOneShot(enemyRoar, 0.7f);
+            gMan.AlienRoar();
             Destroy(gameObject);
         }
 

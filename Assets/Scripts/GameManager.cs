@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public PlayerController playerController = null;
 
     AudioSource musicSource;
+    [SerializeField] AudioClip enemyRoar;
+    [SerializeField] AudioClip enemyRoar2;
+    private AudioSource enemySounds;
 
     #region Singleton & Awake
     //public static GameManager gMan = null; // should always initilize
@@ -39,6 +42,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        
+        enemySounds = gameObject.AddComponent<AudioSource>();
+        enemySounds.volume = 0.65f;
         if (musicSource == null)
         {
             musicSource = gameObject.AddComponent<AudioSource>();
@@ -57,6 +63,7 @@ public class GameManager : MonoBehaviour
         isGameOver = false;
         stealthState = true;
         InitialiseGame();
+        Application.targetFrameRate = 144; // framerate
     }
 
     public void InitialiseGame()
@@ -65,6 +72,8 @@ public class GameManager : MonoBehaviour
         {
             player = GameObject.FindWithTag("Player");
             playerController = player.GetComponent<PlayerController>();
+
+            player.transform.GetChild(1).transform.GetChild(4).gameObject.SetActive(false);
             Debug.Log("Loading assets");
         }
     }
@@ -87,6 +96,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
+        player.transform.GetChild(1).transform.GetChild(4).gameObject.SetActive(true); // dead image
         Time.timeScale = 0;
         //Activate GameOver Screen
     }
@@ -129,8 +139,14 @@ public class GameManager : MonoBehaviour
             {
                 musicSource.Stop();
             }
+            
             //Awake();
             //Start();
         }
+    }
+
+    public void AlienRoar()
+    {
+        enemySounds.PlayOneShot(enemyRoar, 0.7f);
     }
 }

@@ -15,9 +15,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Canvas myUI = null;
     [SerializeField] private Canvas pauseUI = null;
     public bool isPaused = false;
+    public GameManager gMan;
 
     [Header("Camera Properties")]
     public Camera cam; // may replace with cinemachine
+
+
 
     private void Start()
     {
@@ -30,6 +33,11 @@ public class PlayerController : MonoBehaviour
         currHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         myUI = transform.GetChild(1).GetComponent<Canvas>();
+
+        if(gMan == null)
+        {
+            gMan = GameObject.Find("GameManager").GetComponent<GameManager>();
+        }
     }
 
     // Update is called once per frame
@@ -39,6 +47,8 @@ public class PlayerController : MonoBehaviour
         {
             // player dies
             // game is over
+            gMan.GameOver();
+            gMan.isGameOver = true;
             Debug.Log("GAME OVER");
         }
 
