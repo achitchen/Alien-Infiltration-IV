@@ -8013,6 +8013,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2634115878290002070, guid: 321f3bad1e6288542a91fb935c12474f, type: 3}
+      propertyPath: m_Color.a
+      value: 0.8627451
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 321f3bad1e6288542a91fb935c12474f, type: 3}
 --- !u!1001 &5517323740131670913

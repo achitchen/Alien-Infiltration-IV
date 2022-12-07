@@ -1443,7 +1443,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Developer_Room
+          m_StringArgument: StealthScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &994161459
@@ -1580,6 +1580,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1809137951, guid: 1019b4d2d4bba3b47bb69042529680dc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7713205588433048262, guid: 1019b4d2d4bba3b47bb69042529680dc, type: 3}
       propertyPath: m_Name
       value: GameManager

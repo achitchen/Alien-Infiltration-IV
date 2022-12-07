@@ -53,9 +53,12 @@ public class GameManager : MonoBehaviour
 
     public void InitialiseGame()
     {
-        player = GameObject.FindWithTag("Player");
-        playerController = player.GetComponent<PlayerController>();
-        Debug.Log("Loading assets");
+        if (SceneManager.GetActiveScene().name != "Main_Menu")
+        {
+            player = GameObject.FindWithTag("Player");
+            playerController = player.GetComponent<PlayerController>();
+            Debug.Log("Loading assets");
+        }
     }
 
     private void Update()
