@@ -11,6 +11,10 @@ public class EnemyController : MonoBehaviour
     private bool shooting = false, preparingToShoot = false;
     public LineRenderer laserBeam = null;
     public Transform attackPoint = null;
+    [SerializeField] AudioClip laserSound;
+    [SerializeField] AudioClip enemyRoar;
+    [SerializeField] AudioClip enemyRoar2;
+    private AudioSource enemySounds;
 
     [Header("UI")]
     public EnemyHealth healthBar;
@@ -25,6 +29,8 @@ public class EnemyController : MonoBehaviour
     {
        rb = GetComponent<Rigidbody>();
        laserBeam.enabled = false;
+        enemySounds = gameObject.AddComponent<AudioSource>();
+        enemySounds.volume = 0.65f;
 
        // Health + UI
        currHealth = maxHealth;
@@ -37,6 +43,7 @@ public class EnemyController : MonoBehaviour
 
         if (currHealth <= 0) // check health
         {
+            enemySounds.PlayOneShot(enemyRoar, 0.7f);
             Destroy(gameObject);
         }
 
@@ -108,6 +115,7 @@ public class EnemyController : MonoBehaviour
         preparingToShoot = true;
         yield return new WaitForSeconds(0.3f);
         shooting = true;
+        enemySounds.PlayOneShot(laserSound, 0.7f);
         yield return new WaitForSeconds(0.1f);
         laserBeam.enabled = true;
         yield return new WaitForSeconds(0.3f);

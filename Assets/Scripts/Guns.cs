@@ -37,11 +37,20 @@ public class Guns : MonoBehaviour
     //bug fixing :D
     [SerializeField] private bool allowInvoke = true;
 
+    [SerializeField] AudioClip gunSound;
+    private AudioSource gunSource;
+
     private void Awake()
     {
         //make sure magazine is full
         bulletsLeft = magazineSize;
         readyToShoot = true;
+        if (gunSource == null)
+        {
+            gunSource = gameObject.AddComponent<AudioSource>();
+            gunSource.volume = 0.65f;
+            gunSource.clip = gunSound;
+        }
     }
 
     private void Start()
@@ -124,6 +133,8 @@ public class Guns : MonoBehaviour
             GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity); //store instantiated bullet in currentBullet
                                                                                                        //Rotate bullet to shoot direction
             currentBullet.transform.forward = directionWithSpread.normalized;
+
+            gunSource.PlayOneShot(gunSound, 0.7f);
 
             //Add forces to bullet
             currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);

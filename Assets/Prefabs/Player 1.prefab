@@ -2186,6 +2186,7 @@ MonoBehaviour:
   attackPoint: {fileID: 2634115877467797377}
   ammunitionDisplay: {fileID: 2634115878398153719}
   allowInvoke: 1
+  gunSound: {fileID: 8300000, guid: e7608f2ee2b3d4b4d940bcd705493199, type: 3}
 --- !u!1 &2634115878278182334
 GameObject:
   m_ObjectHideFlags: 0
