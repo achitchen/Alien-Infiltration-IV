@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     public int currHealth = 0, maxHealth = 100;
     public Rigidbody rb;
     public float timer = 0, shootTimeLimit = 5;
-    private bool shooting = false, preparingToShoot = false;
+    private bool shooting = false, preparingToShoot = false, following = false;
     public LineRenderer laserBeam = null;
     public Transform attackPoint = null;
     [SerializeField] AudioClip laserSound;
@@ -78,7 +78,7 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        if (Vector3.Distance(transform.position, target.position) < 10f) // distance from player
+        if (Vector3.Distance(transform.position, target.position) < 50f) // distance from player
         {
             if (!preparingToShoot)
             {
@@ -86,8 +86,12 @@ public class EnemyController : MonoBehaviour
             }
             RotateTowardsTarget();
         }
+        else
+        {
+            following = false;
+        }
 
-        if (!shooting) // timer
+        if (!shooting && following) // timer
             timer += Time.deltaTime;
 
         if (timer > shootTimeLimit)
@@ -100,6 +104,7 @@ public class EnemyController : MonoBehaviour
     private void MoveTowardsTarget()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+        following = true;
     }
 
     private void RotateTowardsTarget()
