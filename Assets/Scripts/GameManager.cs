@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public bool stealthState;
     public bool transitionState;
     public bool isGameOver;
-    [SerializeField] AudioClip stealthMusic;
+    [SerializeField] AudioClip musicClip;
 
     // Checkpoints
     [Header("Checkpoints")]
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         {
             musicSource = gameObject.AddComponent<AudioSource>();
             musicSource.volume = 0.7f;
-            musicSource.clip = stealthMusic;
+            musicSource.clip = musicClip;
         }
         musicSource.Play();
         Time.timeScale = 1;

@@ -17,7 +17,7 @@ public class UploadVirus : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F)) {
                 Debug.Log("Start combat phase!");
-                //SceneManager.LoadScene("CombatScene");
+                SceneManager.LoadScene("Combat_Scene");
             }
         }
     }
