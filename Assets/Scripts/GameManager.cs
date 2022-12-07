@@ -95,6 +95,12 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadTime());
     }
 
+    public void LoadMenu()
+    {
+        playerController.Pause();
+        SceneManager.LoadScene("Main_Menu"); // for the purpose of time :(
+    }
+
     private IEnumerator LoadTime()
     {
         yield return new WaitForSeconds(1f);

@@ -103,6 +103,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+        Debug.Log("I quit!");
+    }
+
     public void TakeDamage(int damage)
     {
         currHealth -= damage;
