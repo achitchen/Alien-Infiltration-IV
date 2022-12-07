@@ -47,7 +47,10 @@ public class GameManager : MonoBehaviour
         }
         if (alienMainframe == null)
         {
-            alienMainframe = GameObject.Find("AlienMainframe");
+            if (SceneManager.GetActiveScene().name != "Main_Menu")
+            {
+                alienMainframe = GameObject.Find("AlienMainframe");
+            }
         }
         musicSource.Play();
         Time.timeScale = 1;
@@ -81,15 +84,18 @@ public class GameManager : MonoBehaviour
                 Start();
             }
         }
-        if (alienMainframe.GetComponent<UploadVirus>().transitionScene)
+        if (alienMainframe != null)
         {
-            SceneManager.LoadScene("Combat_Scene");
-            if (musicSource.isPlaying)
+            if (alienMainframe.GetComponent<UploadVirus>().transitionScene)
             {
-                musicSource.Stop();
+                SceneManager.LoadScene("Combat_Scene");
+                if (musicSource.isPlaying)
+                {
+                    musicSource.Stop();
+                }
+                Awake();
+                Start();
             }
-            Awake();
-            Start();
         }
     }
     public void GameOver()
