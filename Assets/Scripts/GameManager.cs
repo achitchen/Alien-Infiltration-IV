@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
         {
             musicSource = gameObject.AddComponent<AudioSource>();
             musicSource.volume = 0.7f;
+            musicSource.loop = true;
             musicSource.clip = musicClip;
         }
         if (alienMainframe == null)

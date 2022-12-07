@@ -39,11 +39,18 @@ public class UploadVirus : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        uploadReady = true;
+        if (other.CompareTag("Player"))
+        {
+            uploadReady = true;
+        }
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        uploadReady = false;
+        if (other.CompareTag("Player"))
+        {
+            uploadReady = false;
+        }
     }
 }
