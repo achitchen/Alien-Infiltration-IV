@@ -20778,6 +20778,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9850396d1bc314b88f87138cd0f23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1190533436 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 464377569, guid: 321f3bad1e6288542a91fb935c12474f, type: 3}
+  m_PrefabInstance: {fileID: 1190533434}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1194216825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37220,6 +37225,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3481044850501685505, guid: c453cc8a8089f7b47b2f80151ec85485, type: 3}
+      propertyPath: virusText
+      value: 
+      objectReference: {fileID: 1190533436}
     - target: {fileID: 3481044850501685509, guid: c453cc8a8089f7b47b2f80151ec85485, type: 3}
       propertyPath: m_RootOrder
       value: 2

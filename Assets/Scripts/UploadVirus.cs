@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class UploadVirus : MonoBehaviour
 {
     public bool uploadReady;
+    [SerializeField] GameObject virusText;
     void Start()
     {
         uploadReady = false;
@@ -15,9 +16,20 @@ public class UploadVirus : MonoBehaviour
     {
         if (uploadReady)
         {
+            if (virusText!= null)
+            {
+                virusText.SetActive(true);
+            }
             if (Input.GetKeyDown(KeyCode.F)) {
                 Debug.Log("Start combat phase!");
                 SceneManager.LoadScene("Combat_Scene");
+            }
+        }
+        else
+        {
+            if (virusText!= null)
+            {
+                virusText.SetActive(false);
             }
         }
     }
