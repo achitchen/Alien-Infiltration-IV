@@ -36523,6 +36523,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AlienMainframe
       objectReference: {fileID: 0}
+    - target: {fileID: 3481044850648441530, guid: c453cc8a8089f7b47b2f80151ec85485, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c453cc8a8089f7b47b2f80151ec85485, type: 3}
 --- !u!1001 &7763730705495177905
