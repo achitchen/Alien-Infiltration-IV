@@ -84,19 +84,6 @@ public class GameManager : MonoBehaviour
                 Start();
             }
         }
-        if (alienMainframe != null)
-        {
-            if (alienMainframe.GetComponent<UploadVirus>().transitionScene)
-            {
-                SceneManager.LoadScene("Combat_Scene");
-                if (musicSource.isPlaying)
-                {
-                    musicSource.Stop();
-                }
-                Awake();
-                Start();
-            }
-        }
     }
     public void GameOver()
     {
@@ -132,5 +119,18 @@ public class GameManager : MonoBehaviour
     {
         if (currentCheckpoint != null)
             player.gameObject.transform.position = currentCheckpoint.transform.position;
+    }
+
+    public void LoadCombatScene()
+    {
+        {
+            SceneManager.LoadScene("Combat_Scene");
+            if (musicSource.isPlaying)
+            {
+                musicSource.Stop();
+            }
+            Awake();
+            Start();
+        }
     }
 }

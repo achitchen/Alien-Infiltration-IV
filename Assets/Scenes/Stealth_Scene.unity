@@ -37317,6 +37317,10 @@ PrefabInstance:
       propertyPath: virusText
       value: 
       objectReference: {fileID: 891780320}
+    - target: {fileID: 3481044850501685505, guid: c453cc8a8089f7b47b2f80151ec85485, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 8616532658353603565}
     - target: {fileID: 3481044850501685509, guid: c453cc8a8089f7b47b2f80151ec85485, type: 3}
       propertyPath: m_RootOrder
       value: 2

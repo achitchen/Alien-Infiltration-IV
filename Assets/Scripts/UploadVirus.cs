@@ -8,6 +8,7 @@ public class UploadVirus : MonoBehaviour
     public bool uploadReady;
     public bool transitionScene;
     [SerializeField] GameObject virusText;
+    [SerializeField] GameManager gameManager;
     void Start()
     {
         uploadReady = false;
@@ -24,11 +25,7 @@ public class UploadVirus : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.F)) {
                 Debug.Log("Start combat phase!");
-                transitionScene = true;
-            }
-            else
-            {
-                transitionScene = false;
+                gameManager.LoadCombatScene();
             }
         }
         else
