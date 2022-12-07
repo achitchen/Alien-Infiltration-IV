@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public bool transitionState;
     public bool isGameOver;
     [SerializeField] AudioClip musicClip;
+    private GameObject alienMainframe;
 
     // Checkpoints
     [Header("Checkpoints")]
@@ -44,6 +45,10 @@ public class GameManager : MonoBehaviour
             musicSource.volume = 0.7f;
             musicSource.clip = musicClip;
         }
+        if (alienMainframe == null)
+        {
+            alienMainframe = GameObject.Find("AlienMainframe");
+        }
         musicSource.Play();
         Time.timeScale = 1;
         isGameOver = false;
@@ -75,6 +80,16 @@ public class GameManager : MonoBehaviour
                 Awake();
                 Start();
             }
+        }
+        if (alienMainframe.GetComponent<UploadVirus>().transitionScene)
+        {
+            SceneManager.LoadScene("Combat_Scene");
+            if (musicSource.isPlaying)
+            {
+                musicSource.Stop();
+            }
+            Awake();
+            Start();
         }
     }
     public void GameOver()

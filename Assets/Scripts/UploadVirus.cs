@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class UploadVirus : MonoBehaviour
 {
     public bool uploadReady;
+    public bool transitionScene;
     [SerializeField] GameObject virusText;
     void Start()
     {
         uploadReady = false;
+        transitionScene = false;
     }
 
     private void Update()
@@ -22,7 +24,11 @@ public class UploadVirus : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.F)) {
                 Debug.Log("Start combat phase!");
-                SceneManager.LoadScene("Combat_Scene");
+                transitionScene = true;
+            }
+            else
+            {
+                transitionScene = false;
             }
         }
         else
