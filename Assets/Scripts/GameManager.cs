@@ -20,21 +20,21 @@ public class GameManager : MonoBehaviour
     AudioSource musicSource;
 
     #region Singleton & Awake
-    public static GameManager gMan = null; // should always initilize
+    //public static GameManager gMan = null; // should always initilize
 
-    private void Awake()
-    {
-        if (gMan == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            gMan = this;
-        }
-        else if (gMan != null)
-        {
-            Destroy(gameObject); // if its already there destroy it
-        }
-        Application.targetFrameRate = 144; // framerate
-    }
+    //private void Awake()
+    //{
+    //    if (gMan == null)
+    //    {
+    //        DontDestroyOnLoad(gameObject);
+    //        gMan = this;
+    //    }
+    //    else if (gMan != null)
+    //    {
+    //        Destroy(gameObject); // if its already there destroy it
+    //    }
+    //    Application.targetFrameRate = 144; // framerate
+    //}
     #endregion
 
     void Start()
@@ -80,8 +80,8 @@ public class GameManager : MonoBehaviour
                 {
                     musicSource.Stop();
                 }
-                Awake();
-                Start();
+                //Awake();
+                //Start();
             }
         }
     }
@@ -129,8 +129,8 @@ public class GameManager : MonoBehaviour
             {
                 musicSource.Stop();
             }
-            Awake();
-            Start();
+            //Awake();
+            //Start();
         }
     }
 }

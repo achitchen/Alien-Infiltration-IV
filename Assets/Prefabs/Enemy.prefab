@@ -663,12 +663,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ca02f689eaa3b43b3592f7953c8546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 8
   currHealth: 0
   maxHealth: 100
   rb: {fileID: 0}
   timer: 0
-  shootTimeLimit: 5
+  shootTimeLimit: 4
   laserBeam: {fileID: 9001309303847391672}
   attackPoint: {fileID: 9001309302496452624}
   laserSound: {fileID: 8300000, guid: d21396a524798e74f9f8680522e83028, type: 3}
@@ -676,6 +676,7 @@ MonoBehaviour:
   enemyRoar2: {fileID: 8300000, guid: bbd751792395ae749bd59f35fe843ede, type: 3}
   healthBar: {fileID: 9001309302776750350}
   target: {fileID: 0}
+  gMan: {fileID: 0}
 --- !u!120 &9001309303847391672
 LineRenderer:
   m_ObjectHideFlags: 0

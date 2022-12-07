@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour
 
     [Header("Other")]
     private const int propLayer = 9;
+    public GameManager gMan;
 
     private void Start()
     {
@@ -67,9 +68,9 @@ public class EnemyController : MonoBehaviour
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * hit.distance, Color.yellow);
                 laserBeam.SetPosition(1, new Vector3(hit.point.x, hit.point.y, hit.point.z)); // set the end position to the hit position
 
-                if (hit.collider.gameObject == GameManager.gMan.player) // if hit player
+                if (hit.collider.gameObject == gMan.player) // if hit player
                 {
-                    GameManager.gMan.playerController.TakeDamage(1);
+                    gMan.playerController.TakeDamage(1);
                 }
                 if (hit.collider.gameObject.layer == propLayer) // if hit prop
                 {

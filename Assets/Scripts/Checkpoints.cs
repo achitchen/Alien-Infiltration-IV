@@ -19,7 +19,7 @@ public class Checkpoints : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player")
             {
-                GameManager.gMan.currentCheckpoint = gameObject;
+                //GameManager.gMan.currentCheckpoint = gameObject;
                 gameObject.transform.GetComponent<Renderer>().material = checkpointActived;
                 Destroy(this); // only keeps last checkpoint
             }
